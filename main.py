@@ -4,6 +4,11 @@ name_of_unit = "seconds"
 
 def days_to_units():
     user_input = input("Enter number of days and I will convert it to seconds: ")
+
+    if not user_input.isdigit():
+        print("Invalid input. Please enter a positive integer.")
+        return
+
     days = int(user_input)
     calculated_units = days * calculation_to_units
 
