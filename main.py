@@ -15,4 +15,5 @@ def days_to_units():
     except ValueError:
         print("Invalid input. Please enter a positive integer.")
 
-days_to_units()
+while True:
+    days_to_units()
