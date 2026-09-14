@@ -24,7 +24,7 @@ while user_input != "exit":
     user_input = get_user_input()
     if user_input.lower() == "exit":
         break
-    for number_of_days in user_input.split(","):
+    for number_of_days in set(x.strip() for x in user_input.split(",")):
         validate_and_execute(number_of_days)
 
 
