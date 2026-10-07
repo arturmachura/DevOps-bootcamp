@@ -1,4 +1,19 @@
 import boto3
-import schedule
 
-client = boto3.client('eks', region_name='us-west-1')
+client = boto3.client('eks', region_name='eu-central-1')
+clusters = client.list_clusters()
+
+for cluster in clusters:
+    response = client.describe_cluster(
+        name=cluster
+    )
+
+cluster_info = response['cluster']
+cluster_status = response['cluster']['status']
+cluster_endpoint = response['endpoint']
+cluster_version = response['version']
+
+print(f" Cluster {cluster} status is {cluster_status}")
+print(f"Cluster endpoint: {cluster_endpoint}")
+print(f"Cluster version: {cluster_version}")
+
