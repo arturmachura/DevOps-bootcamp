@@ -1,0 +1,28 @@
+apiVersion: monitoring.coreos.com/v1beta1
+kind: AlertmanagerConfig
+metadata:
+  name: main-rules-alert-config
+  namespace: monitoring
+spec:
+  route:
+    receiver: 'default-receiver'
+    repeatInterval: 30m
+    routes:
+    - matchers:
+      name: alertname
+      value: HostHighCpuLoad
+    - matchers:
+      name: alertname
+      value: KubernetesPodCrashLooping
+    repetItInterval: 10m
+  receivers:
+  - name: 'default-receiver'
+    emailConfigs:
+    - to: 'artur_machura@wp.pl'
+      from: 'artur_machura@wp.pl'
+      smarthost: 'smtp.gmail.com:587'
+      authUsername: 'artur_machura@wp.pl'
+      authIdentity: 'artur_machura@wp.pl'
+      authPassword:
+        name: gmail-auth
+        key: password
