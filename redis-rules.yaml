@@ -1,0 +1,27 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: redis-rules
+  labels:
+    app: kube-prometheus-stack
+    release: monitoring
+spec:
+  groups:
+  - name: redis.rules
+    rules:
+    - alert: RedisDown
+      expr: redis_up == 0
+      for: 5m
+      labels:
+        severity: critical
+      annotations:
+        summary: "Redis instance is down"
+        description: "Redis instance has been down for more than 5 minutes."
+    - alert: RedisTooManyConnections
+      expr: redis_connected_clients / redis_config_maxclients * 100 > 90
+      for: 2m
+      labels:
+        severity: warning
+      annotations:
+        summary: Redis too many connections (instance {{ $labels.instance }})
+        description: "Redis has {{ $value }} connections\n  LABELS = {{ $labels }}"
