@@ -1,0 +1,25 @@
+MAIN
+
+docker pull redis
+
+docker images
+
+docker run redis
+
+docker ps
+
+docker run -d redis
+
+docker stop <container_id>
+
+docker start <container_id>
+
+docker ps -a
+
+docker run redis:<version>
+
+docker run -p 6379:6379 -d redis
+
+
+DEBUG
+
