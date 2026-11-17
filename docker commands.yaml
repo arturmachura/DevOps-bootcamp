@@ -23,3 +23,8 @@ docker run -p 6379:6379 -d redis
 
 DEBUG
 
+docker logs <container_id>
+
+docker run -d -p 6379:6379 --name myredis redis
+
+docker exec -it myredis /bin/bash
